@@ -20,8 +20,15 @@ const kmhToMs = (kmh) => {
 
 // CALCULATING NEW VELOCITY
 const calculateNewVelocity = (initialVelocity, acceleration, time) => {
-  const velocityToMs = kmhToMs(initialVelocity);
-  return velocityToMs+ (acceleration * time);
+  const velocityInMs = kmhToMs(initialVelocity);
+  return velocityInMs+ (acceleration * time);
+}
+
+// CALCULATING NEW DISTANCE
+const calculateNewDistance = (initialVelocity, time) => {
+  const velocityInMs = kmhToMs(initialVelocity); 
+  const distanceInMeters = velocityInMs * time; // Distance in KM
+  return distanceInMeters / 1000
 }
 
 console.log(`Corrected New Velocity: ${} km/h`);
