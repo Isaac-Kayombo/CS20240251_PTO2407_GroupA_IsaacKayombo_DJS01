@@ -31,6 +31,11 @@ const calculateNewDistance = (initialVelocity, time) => {
   return distanceInMeters / 1000
 }
 
+// CALCULATING REMAINING FUEL
+const calculateRemainingFuel = (burnRate, time) => {
+  return burnRate * time;
+}
+
 console.log(`Corrected New Velocity: ${} km/h`);
 console.log(`Corrected New Distance: ${} km`);
 console.log(`Corrected Remaining Fuel: ${} kg`);
