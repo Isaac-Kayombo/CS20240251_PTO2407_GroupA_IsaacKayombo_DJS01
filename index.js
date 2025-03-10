@@ -18,6 +18,12 @@ const kmhToMs = (kmh) => {
   return kmh * (1000 / 3600); // 1 km/h = 1000 meters / 3600 seconds
 }
 
+// CALCULATING NEW VELOCITY
+const calculateNewVelocity = (initialVelocity, acceleration, time) => {
+  const velocityToMs = kmhToMs(initialVelocity);
+  return velocityToMs+ (acceleration * time);
+}
+
 console.log(`Corrected New Velocity: ${} km/h`);
 console.log(`Corrected New Distance: ${} km`);
 console.log(`Corrected Remaining Fuel: ${} kg`);
