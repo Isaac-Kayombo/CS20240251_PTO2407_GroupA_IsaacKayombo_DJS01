@@ -1,10 +1,3 @@
-/**
- * Debugging Guide
- * 1. Make the code more readable
- * 2. Pick up calculation errors
- * 3. Make these calculations robust such that the calculation does not give an incorrect result, it throws an error to the user if something has gone wrong (parameter used with an incorrect unit of measurement, etc)
- */
-
 // GIVEN PARAMETERS
 const initialVelocity = 10000; // velocity (km/h)
 const acceleration = 3; // acceleration (m/s^2)
@@ -36,9 +29,29 @@ const calculateRemainingFuel = (burnRate, time) => {
   return burnRate * time;
 }
 
-console.log(`Corrected New Velocity: ${} km/h`);
-console.log(`Corrected New Distance: ${} km`);
-console.log(`Corrected Remaining Fuel: ${} kg`);
+
+
+// TRY AND CATCH BLOCK FOR PERFORMING CALCULATIONS
+try {
+  const newVelocityMs = calculateNewVelocity(initialVelocity, acceleration, time); // in meters
+  const newVelocityKmh = newVelocityMs * (3600 / 1000); // converts to km/h
+  const newDistance = calculateNewDistance(initialVelocity, time);
+  const remainingFuel = calculateRemainingFuel(fuelBurnRate, time);
+
+  // ENSURES WE DON'T USE MORE FUEL THAN AVAILABLE
+  if (remainingFuel > initialFuel) {
+    throw new Error("Not enough fuel for the given time and burn rate.")
+  }
+
+  // LOGGING RESULTS
+  console.log(`Corrected New Velocity: ${newVelocityKmh} km/h`);
+  console.log(`Corrected New Distance: ${newDistance} km`);
+  console.log(`Corrected Remaining Fuel: ${initialFuel - remainingFuel} kg`);
+
+} catch (error) {
+  console.error("Error in calculation:", error.message);
+}
+
 
 
 
